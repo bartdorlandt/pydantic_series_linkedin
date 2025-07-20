@@ -118,8 +118,8 @@ print(devices.model_dump_json(indent=2))
 # }
 
 
-from deepdiff import DeepDiff
-from rich import print as pprint
+from deepdiff import DeepDiff  # noqa: E402
+from rich import print as pprint  # noqa: E402
 
 d = DeepDiff(
     network_json,
