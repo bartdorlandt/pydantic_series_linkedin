@@ -54,13 +54,11 @@ pprint(devices.model_dump_json(by_alias=True, exclude_none=True, indent=2))
 
 dump = devices.model_dump_json(by_alias=True, exclude_none=True)
 new = json.loads(dump)
-d = DeepDiff(
+if d := DeepDiff(
     network_json,
     new,
     ignore_order=True,
-)
-
-if d:
+):
     pprint(d)  # Should be empty if the JSON matches the model
 else:
     print("No differences found between the JSON and the model dump.")
