@@ -121,13 +121,7 @@ print(devices.model_dump_json(indent=2))
 from deepdiff import DeepDiff  # noqa: E402
 from rich import print as pprint  # noqa: E402
 
-d = DeepDiff(
-    network_json,
-    devices.model_dump(by_alias=True, exclude_none=True),
-    ignore_order=True,
-)
-
-if d:
+if d := DeepDiff(network_json, devices.model_dump(by_alias=True, exclude_none=True), ignore_order=True):
     pprint(d)  # Should be empty if the JSON matches the model
 else:
     print("No differences found between the JSON and the model dump.")

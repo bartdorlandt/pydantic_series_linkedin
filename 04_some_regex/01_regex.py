@@ -9,7 +9,7 @@ def port_validator(value: str) -> str:
 
     if not isinstance(value, str):
         raise TypeError("Port name must be a string")
-    elif value == "":
+    elif not value:
         raise ValueError("Invalid port name")
     elif not port_re.match(value):
         raise ValueError(f"Invalid port name: {value}")
