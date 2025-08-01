@@ -5,19 +5,9 @@ from deepdiff import DeepDiff
 from pydantic import BaseModel, BeforeValidator, Field, RootModel
 from rich import print as pprint
 
-
-def turn_to_list_of_str(value: str | list[str]) -> list[str]:
-    if isinstance(value, str):
-        return [value]
-    elif isinstance(value, list):
-        return value
-    else:
-        raise ValueError(f"Expected str or list[str], got {type(value)}")
-
-
 ListStr = Annotated[
     list[str],
-    BeforeValidator(turn_to_list_of_str),
+    BeforeValidator(lambda v: [v] if isinstance(v, str) else v),
 ]
 
 
